@@ -7,7 +7,7 @@
       <cover-view class='model-btns'>
         <button class='model-btn close-btn' bindtap='close'>取消</button>
         <button class='model-btn' wx:if='{{openType == "1"}}' bindgetphonenumber='getPhone' open-type='getPhoneNumber'>授权</button>
-        <button class='model-btn' wx:if='{{openType == "2"}}' open-type='share'>分享</button>
+        <!-- <button class='model-btn' wx:if='{{openType == "2"}}' open-type='share'>分享</button> -->
       </cover-view>
     </cover-view>
   </cover-view>
@@ -51,6 +51,23 @@
         <text wx:if='{{item.IsQuick}}'>快充</text>
         <text wx:if='{{item.IsOpen == 1}}'> + 风扇</text>
         </text>
+      </view>
+      
+      <view class='icon' catchtap='freeClickHandler'>
+        <image src="../../../images/recharge.png" class="icon_img"/>
+        <text class="icon_text">小伞充电</text>
+      </view>
+      <view class='icon'>
+        <image src="../../../images/fenshan.png" class="icon_img"/>
+        <text class="icon_text">小伞风扇</text>
+      </view>
+      <view class='icon'>
+        <image src="../../../images/yinxiang.png" class="icon_img"/>
+        <text class="icon_text">小伞音响</text>
+      </view>
+      <view class='icon'>
+        <image src="../../../images/shengtai.png" class="icon_img"/>
+        <text class="icon_text">小伞娱乐生态</text>
       </view>
     </view>
   </view>

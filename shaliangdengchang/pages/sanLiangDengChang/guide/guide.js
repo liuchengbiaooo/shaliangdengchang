@@ -65,55 +65,6 @@ Page({
     //       openType: ''
     //     }
     //   })
-
-    //   wx.login({ //获取微信code验证串
-    //     success: function(msg) {
-    //       console.log('wx.login', msg)
-    //       //解析手机号码加密串
-    //       getApp().ajaxResetS('/Weixin/WxaGetUserPhone', 'post', {
-    //         code: msg.code,
-    //         encryptedData: e.detail.encryptedData,
-    //         iv: e.detail.iv
-    //       }, function(res) {
-    //         console.log(res)
-    //         if (res.data.Code == 1) {
-    //           getApp().ajaxResetS('/MySetting/BindingPhoneInWxa', 'post', {
-    //             phone: res.data.Data
-    //           }, (result) => {
-    //             if (result.data.Code == 1) {
-    //               getApp().globalData.isHasPhone = 1
-
-    //               // 手机号授权绑定成功
-    //               self.setData({
-    //                 showModel: true,
-    //                 model: {
-    //                   text: '分享即可免费充电',
-    //                   openType: '2'
-    //                 }
-    //               })
-
-    //             } else if (result.data.Code == -2) {
-    //               wx.showModal({
-    //                 title: '温馨提示',
-    //                 content: '该手机号码已被使用，请使用其他号码！',
-    //                 showCancel: false,
-    //                 success: function(msg) {
-    //                   // if (msg.confirm) {
-    //                   //   wx.navigateTo({
-    //                   //     url: '/pages/public/CheckPhone/CheckPhone',
-    //                   //   })
-    //                   //   return;
-    //                   // } else if (msg.cancel) {
-    //                   // }
-    //                 }
-    //               })
-    //             }
-    //           })
-    //         }
-    //       })
-    //     }
-    //   })
-    // }
   },
 
   // 获取引导页数据

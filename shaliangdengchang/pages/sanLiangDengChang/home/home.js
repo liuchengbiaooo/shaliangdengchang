@@ -29,7 +29,7 @@ Page({
     console.log(getApp().globalData.LevelName)
     getApp().ajaxResetS('/Sunshade/SaveEnergyNumByUserId', 'post', {
       ShopId: getApp().globalData.wscShopId
-    }, function(res) {
+    }, function (res) {
       if (res.data.Code == 1) {
         // self.getEnergyTotal()
         const data = {
@@ -69,7 +69,7 @@ Page({
       Id: getApp().globalData.UserID,
       ShopId: getApp().globalData.wscShopId
     }
-    
+
     getApp().ajaxResetS('/Sunshade/GetEnergylevel', 'post', data, res => {
       if (res.data.Code == 1) {
         const Data = res.data.Data
@@ -156,18 +156,33 @@ Page({
 
   // 免费充电按钮点击
   freeClickHandler(e) {
-    if (getApp().globalData.ChargingFlag == 1) {
-      wx.showModal({
-        title: '正在充电中...',
-        content: '本次充电完成后才能续费',
-        showCancel: false
-      })
-      return
-    }
+    console.log(e, "执行", getApp().globalData.wxCode)
+    // if (getApp().globalData.ChargingFlag == 1) {
+    //   wx.showModal({
+    //     title: '正在充电中...',
+    //     content: '本次充电完成后才能续费',
+    //     showCancel: false
+    //   })
+    //   return
+    // }
     if (!getApp().globalData.DeviceSn) {
       self.sanCodeHandler(e, self.freeClickHandler)
       return
     }
+    getApp().ajaxResetS('/app/login/findUserInfo', 'post', {//查询用户信息 拿手机号
+      WxCode: getApp().globalData.wxCode
+    }, function (res) {
+      if (res.data.data.phoneNumber == '') {
+        console.log("sss", res.data.data.phoneNumber);
+        self.setData({
+          showModel: true,
+          model: {
+            text: '授权手机号码',
+            openType: '1'
+          }
+        })
+      }
+    })
     if (getApp().globalData.isHasPhone == 1) { //已授权
       self.setData({
         showModel: true,
@@ -188,7 +203,7 @@ Page({
   },
 
   // 手机授权 
-  getPhone: function(e) {
+  getPhone: function (e) {
     if (e.detail.errMsg == 'getPhoneNumber:fail user canceled' || e.detail.errMsg == 'getPhoneNumber:fail user deny') { //用户取消授权
       console.log('授权取消')
     } else {
@@ -202,22 +217,38 @@ Page({
       })
 
       wx.login({ //获取微信code验证串
-        success: function(msg) {
-          console.log('wx.login', msg)
+        success: function (msg) {
+          getApp().ajaxReset('/app/login/wxLogin', 'post', { //获取session,必须保证与登录一致
+            code: msg.code
+          }, function (res) {
+            if (res.data.status == '1') {
+              getApp().globalData.SessionID = res.data.data.sessionKey;
+              getApp().globalData.wxCode = res.data.data.openid;
+            }
+          })
           //解析手机号码加密串
-          getApp().ajaxResetS('/Weixin/WxaGetUserPhone', 'post', {
-            code: msg.code,
+          getApp().ajaxResetS('/app/login/getPhoneNumber', 'post', {
             encryptedData: e.detail.encryptedData,
+            session_key: getApp().globalData.SessionID,
             iv: e.detail.iv
-          }, function(res) {
-            console.log(res)
-            if (res.data.Code == 1) {
-              getApp().ajaxResetS('/MySetting/BindingPhoneInWxa', 'post', {
-                phone: res.data.Data
-              }, (result) => {
-                if (result.data.Code == 1) {
-                  getApp().globalData.isHasPhone = 1
+          }, function (res) {
+            getApp().globalData.phoneNumber = res.data.data.purePhoneNumber;
+            console.log(res.data.data.purePhoneNumber)
 
+            if (res.data.status == 1) {
+              getApp().ajaxResetS('/app/login/savaUserInfo', 'post', {
+                userName: getApp().globalData.nowUserInfo.nickName,
+                headImg: getApp().globalData.nowUserInfo.avatarUrl,
+                phoneNumber: res.data.data.purePhoneNumber,
+                age: 1,
+                city: getApp().globalData.nowUserInfo.city,
+                gender: getApp().globalData.nowUserInfo.gender,
+                wxCode: getApp().globalData.wxCode
+              }, (result) => {
+                console.log('result', result)
+                if (result.data.status == 1) {
+                  getApp().globalData.isHasPhone = 1
+                  getApp().globalData.DeviceSn = ''
                   // 手机号授权绑定成功
                   self.setData({
                     showModel: true,
@@ -232,7 +263,7 @@ Page({
                     title: '温馨提示',
                     content: '该手机号码已被使用，请使用其他号码！',
                     showCancel: false,
-                    success: function(msg) {
+                    success: function (msg) {
                       // if (msg.confirm) {
                       //   wx.navigateTo({
                       //     url: '/pages/public/CheckPhone/CheckPhone',
@@ -399,11 +430,13 @@ Page({
 
   // 判断 用户是否是扫码进入 如果不是需要做扫码操作
   sanCodeHandler(e, sucCallBack) {
+    // console.log("sfafgaf")
     wx.scanCode({
       success(res) {
-        console.log(res, '扫码返回')
+        //console.log(res, '扫码返回')
         const DeviceSn = res.path.split('?scene=')[1]
         getApp().globalData.DeviceSn = DeviceSn //旧 A01001101900046B
+        //console.log("DeviceSn", DeviceSn)
         sucCallBack(e)
       }
     })
@@ -463,12 +496,12 @@ Page({
           const orderId = res.data.Data //订单号
 
           // 支付并运行动画
-          getApp().zylPay('微信支付', 22 /*SourceType*/ , 2, getApp().globalData.wscShopId, ChargeFee, orderId, function() {
+          getApp().zylPay('微信支付', 22 /*SourceType*/, 2, getApp().globalData.wscShopId, ChargeFee, orderId, function () {
             // 支付成功后2s 设备放电  并执行动画
-            self.dischargeHandler(orderId, function() {
+            self.dischargeHandler(orderId, function () {
               // 设备放电获取充电剩余时间
               self.getStatus()
-            }, function(res) {
+            }, function (res) {
               getApp().globalData.DeviceSn = ''
               wx.showModal({
                 title: '温馨提示',
@@ -476,7 +509,7 @@ Page({
                 showCancel: false
               })
             })
-          }, function() {
+          }, function () {
             console.log('支付失败')
           })
         }
@@ -639,11 +672,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     self = this
 
-    getApp().autoWxRegister(function(res) { //登录
-     // console.log("执行",getApp().globalData.SessionID,getApp().globalData.wxCode)
+    getApp().autoWxRegister(function (res) { //登录
+      // console.log("执行",getApp().globalData.SessionID,getApp().globalData.wxCode)
 
       // 获取问卷状态
       //self.getQuestionInfos()
@@ -672,20 +705,20 @@ Page({
       // }
 
       //上传用户信息
-      getApp().ajaxReset('/app/login/savaUserInfo','post',{
+      getApp().ajaxReset('/app/login/savaUserInfo', 'post', {
         userName: getApp().globalData.nowUserInfo.nickName,
         headImg: getApp().globalData.nowUserInfo.avatarUrl,
         phoneNumber: '',
-        age: 1 ,
+        age: 1,
         city: getApp().globalData.nowUserInfo.city,
         gender: getApp().globalData.nowUserInfo.gender,
         wxCode: getApp().globalData.wxCode
-      }, function(res){
-        console.log(res,"ok")
+      }, function (res) {
+        console.log(res, "ok")
       })
-    }, function() {
+    }, function () {
       console.log("登录接口调用失败")
-    }, function(res) {
+    }, function (res) {
       console.log('已经登录状态......')
       self.loginSuccess()
     }, self)
@@ -714,21 +747,21 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function(res) {
+  onShow: function (res) {
     self.loginSuccess()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
     // 清理定时器
     clearInterval(self.timer)
     clearInterval(self.timer1)
@@ -737,7 +770,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
     // 清理定时器
     clearInterval(self.timer)
     clearInterval(self.timer1)
@@ -746,7 +779,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     self.getTimeInfo()
     if (getApp().globalData.isLogin == '1') {
       self.getStatus()
@@ -756,12 +789,12 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function(e) {
+  onShareAppMessage: function (e) {
     console.log(e)
     // 分享毕业证书
     if (e.target.dataset.diploma == "diploma") {
@@ -838,9 +871,9 @@ Page({
 
             // 免费下单成功后放电 - 并执行动画
             setTimeout(() => {
-              self.dischargeHandler(orderId, function() {
+              self.dischargeHandler(orderId, function () {
                 self.getStatus()
-              }, function(res) {
+              }, function (res) {
                 getApp().globalData.DeviceSn = ''
                 wx.showModal({
                   title: '温馨提示',

@@ -50,7 +50,7 @@ App({
   },
   /*全局变量*/
   globalData: {
-    wxCode:'', //微信openid
+    wxCode: '', //微信openid
     sessionId: '', //默认sessionid', //用于.net返回的sessionId 保证它是登陆状态的
     // imgAjaxUrl: 'http://192.168.2.230:8000', //服务器
     // ajaxResetUrl: 'http://192.168.2.230:9021', //服务器  微商城9021 小平台9031 其他9001  
@@ -80,6 +80,7 @@ App({
         'cookie': 'ASP.NET_SessionId=' + NowSessionID
       }, // 设置请求的 header
       success: function (res) {
+        console.log(res,'cheng')
         /*登录验证类，防止500错误*/
         if (res.data.error != undefined && res.data.error == 1) { // SessionID过期
           getApp().globalData.isLogin = 0;
@@ -200,19 +201,23 @@ App({
             // })
 
             //拿到appid与SessionID
-            getApp().ajaxReset('/app/login/wxLogin', 'post', { 
+            getApp().ajaxReset('/app/login/wxLogin', 'post', {
               code: codes
             }, function (res) {
-              console.log(res,"Sgfag")
+              console.log(res, "Sgfag")
+              if (res.data.status == '0') {
+                getApp().qptsLayer(res.data.msg);
+                return
+              }
               if (res.data.status == '1') {
                 getApp().globalData.SessionID = res.data.data.sessionKey;
                 getApp().globalData.wxCode = res.data.data.openid;
-                console.log("res",getApp().globalData.wxCode,res)
+                console.log("res", getApp().globalData.SessionID)
               }
               getApp().loginComplete(res, callback)
             })
-            
-           
+
+
 
 
             //console.log("数据", getApp().globalData.nowUserInfo)
@@ -230,7 +235,7 @@ App({
       }
     }
   },
-  loginComplete: function ( res, callback) {
+  loginComplete: function (res, callback) {
     //console.log('登录完成', res)
     getApp().globalData.isLogin = 1
     //var Names = res.data.ReturnModel.Data.Name
