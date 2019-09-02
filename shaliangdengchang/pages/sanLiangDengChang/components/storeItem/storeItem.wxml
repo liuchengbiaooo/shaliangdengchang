@@ -1,0 +1,13 @@
+<view class='stores'>
+  <view class='store' wx:for='{{stores}}' wx:key='{{item.id}}'>
+    <view class='store-img-box'>
+      <image class='store-img' src='{{item.imgUrl}}'></image>
+    </view>
+    <view class='store-title'>{{item.title}}</view>
+    <view class='store-price'>
+      <text class='store-price-use'>{{item.use}}</text>
+      <text class='store-price-del'>{{item.del}}</text>
+      <view hover-class='store-add-car' class='store-shopping-car iconfont icongouwuche'></view>
+    </view>
+  </view> 
+</view>

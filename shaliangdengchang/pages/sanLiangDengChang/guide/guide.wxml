@@ -1,0 +1,34 @@
+<view class='guide'>
+  <!--<swiper class='guide-swiper' indicator-dots indicator-active-color='#f7ca49' indicator-color='rgba(255,255, 255, 1)' bindchange='swiperChangeHandler'>
+    <swiper-item class='swiper-item' wx:for='{{guideImgs}}' wx:key='{{index}}'>
+      <navigator hover-class='none' class='guide-img-box' url='{{item.GuideUrl}}'>
+         <text class='guide-name'>{{item.Name}}</text>  不要的
+        <image mode='aspectFill' class='guide-img' src='{{item.GuidePicture}}'></image>
+      </navigator>
+    </swiper-item>
+  </swiper>-->
+  <swiper class='guide-swiper' indicator-dots indicator-active-color='#f7ca49' indicator-color='rgba(255,255, 255, 1)' bindchange='swiperChangeHandler'>
+    <swiper-item class='swiper-item' wx:for='{{guideImgs}}' wx:key='{{index}}'>
+      <navigator hover-class='none' class='guide-img-box'>
+         <!-- <text class='guide-name'>{{item.Name}}</text>  不要的 -->
+        <image mode='aspectFill' class='guide-img' src='{{item.bannerImg}}'></image>
+      </navigator>
+    </swiper-item>
+  </swiper>
+  <view>
+  <image src="http://sldc.oss-cn-beijing.aliyuncs.com/20190828151444.jpg/imgAll?Expires=1882336486&OSSAccessKeyId=LTAIGvoG2siVQ1ee&Signature=wLIDDMKGZ7KfmuoTdbBW%2BHGCHsI%3D"></image>
+  </view>
+  <view class='guide-btn-area'>
+    <button class='guide-btn' open-type="getUserInfo" bindgetuserinfo='getUserInfo' wx:if='{{isShow}}'>
+      <cover-image class='guide-btn-img' src="/images/enterBtn.png" />
+    </button>
+    <checkbox-group data-checked='{{isChecked}}' bindchange="checkboxChange" wx:if='{{isShow}}' class='guide-protocol'>
+        <label>
+          <checkbox checked='{{isChecked}}' />
+          我已阅读并同意
+        </label>
+        <navigator url='./userProtocol/userProtocol' hover-class='none' hover-stop-propagation='true' class='user-protocol'>《 用户使用协议 》</navigator>
+      </checkbox-group>
+  </view>
+
+</view>

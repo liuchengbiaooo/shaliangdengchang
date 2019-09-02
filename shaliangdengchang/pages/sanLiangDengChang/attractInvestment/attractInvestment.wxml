@@ -1,0 +1,33 @@
+<view class='zs'>
+  <view class='zs-imgbox'>
+    <image class='zs-img' lazy-load src='/images/zs_bg.jpg'></image>
+  </view>
+  <form bindsubmit="joinFun">
+    <view class='input-list'>
+      <view class='input-item'>
+        <view class='item-text'>
+          <view>姓</view> 名：</view>
+        <input class='input' name='name' value='{{form.Name}}'></input>
+      </view>
+      <view class='input-item'>
+        <view class='item-text'>
+          <view>手</view> 机：</view>
+        <input class='input' maxlength='11' type='number' name='tel' value='{{form.Phone}}'></input>
+      </view>
+      <view class='input-item'>
+        <view class='item-text'>
+          <view>地</view> 区：</view>
+        <input class='input' name='dress' value='{{form.Area}}'></input>
+      </view>
+      <view class='input-item'>
+        <view class='item-text'>公司名称：</view>
+        <input class='input' name='company' value='{{form.CompanyName}}'></input>
+      </view>
+      <button class='item-join item-btn' form-type='submit'>立即申请加盟</button>
+      <button class='item-phone item-btn' bindtap='makeCall'>
+        <icon class='iconfont icon-02bohao item-phone-icon'></icon>
+        400-108-1806
+      </button>
+    </view>
+  </form>
+</view>

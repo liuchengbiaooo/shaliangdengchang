@@ -1,0 +1,47 @@
+<form bindsubmit="submitHandler">
+  <view class='words'>
+    <view class='req'>
+      <view class='req_title'>您需要什么帮助？</view>
+      <radio-group name='request' class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{radios}}" wx:key='{{item.Id}}'>
+          <radio color='#f7ca49' value="{{item.Id}}" checked="{{index == 0}}" />{{item.TypeName}}
+        </label>
+      </radio-group>
+    </view>
+    <view class='req'>
+      <view class='req_title'>具体说明：</view>
+      <textarea class='textarea' name='textarea' value='{{content}}' placeholder='请输入详细反馈意见...' />
+    </view>
+    <view class='req'>
+      <view class='req_title'>姓名*</view>
+      <view class='name-sex'>
+        <input name='name' value='{{name}}' type='text' class='user-name'></input>
+        <radio-group name='sex' class="radio-sex" bindchange="radioChange">
+          <label class="radio">
+            <radio color='#f7ca49' value="1" checked="{{true}}" />男</label>
+          <label class="radio">
+            <radio color='#f7ca49' value="0" />女</label>
+        </radio-group>
+      </view>
+    </view>
+    <view class='req'>
+      <view class='req_title'>联系方式*</view>
+      <input name='tel' type='number' maxlength='11' value='{{tel}}' class='contact-input'></input>
+    </view>
+    <button class='submit-btn' form-type="submit">提交</button>
+  </view>
+</form>
+
+<cover-view class='pop' wx:if='{{showPop}}' catchtap='closePop'>
+  <!-- <image class='pop-img' src='/images/tip_word.png' catchtap='gotoOrderFun'></image> -->
+  <cover-image class='pop-img' src='/images/tip_img.png'></cover-image>
+  <cover-view class='pop-text'>
+    <cover-view class='pop-red'>
+      <cover-view>同学</cover-view>
+      <cover-view>你的留言已提交</cover-view>
+      <cover-view>特奖励30分钟免费充电</cover-view>
+      <cover-view>以资鼓励</cover-view>
+    </cover-view>
+    <cover-view class='pop-mini' catchtap='gotoOrderFun'>查看“我的-我的订单”</cover-view>
+  </cover-view>
+</cover-view>

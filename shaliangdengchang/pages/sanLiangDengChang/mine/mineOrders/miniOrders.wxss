@@ -1,0 +1,116 @@
+page{
+  background-color: #35354a;
+}
+.order{
+  padding: 12rpx 24rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  line-height: 50rpx;
+  border-bottom: 0.5rpx solid #333;
+  font-size: 24rpx;
+  color: #fff;
+  position: relative;
+  /* min-height: 230rpx; */
+  min-height: 180rpx;
+}
+.order-left{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-shrink: 0;
+}
+.big-font{
+  font-size: 30rpx;
+}
+.big-font-free{
+  font-size: 40rpx;
+}
+.left-desc{
+  line-height: 40rpx;
+}
+.left-icon{
+  margin-right: 24rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: -webkit-linear-gradient(#f8dd8c, #ebb70f); /* Safari 5.1 - 6.0  不在价格范围的其他的背景色 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 1em;
+  color: #fff;
+  font-size: 30rpx;
+}
+.left-time{
+  font-size: 20rpx;
+}
+.icon-mini{
+  font-size: 15rpx;
+}
+.order-right{
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+.creat{
+  color: #aeaeae;
+  font-size: 20rpx;
+  line-height: 1em;
+}
+.nodata{
+  color: #fff;
+  text-align: center;
+  margin-bottom: 100rpx;
+}
+/* 根据充电金额不同颜色不同 */
+.left-icon-12{
+  background: -webkit-linear-gradient(#ffde77, #e6b51b); /* Safari 5.1 - 6.0 */
+}
+.left-icon-10{
+  background: -webkit-linear-gradient(#ffbb2a, #ff8a16); /* Safari 5.1 - 6.0 */
+}
+.left-icon-9{
+  background: -webkit-linear-gradient(#82cbff, #40b1fd); /* Safari 5.1 - 6.0 */
+}
+.left-icon-8{
+  background: -webkit-linear-gradient(#ffde77, #e6b51b); /* Safari 5.1 - 6.0 */
+}
+.left-icon-6{
+  background: -webkit-linear-gradient(#ffbb2a, #ff8a16); /* Safari 5.1 - 6.0 */
+}
+.left-icon-5{
+  background: -webkit-linear-gradient(#82cbff, #40b1fd); /* Safari 5.1 - 6.0 */
+}
+.left-icon-3{
+  background: -webkit-linear-gradient(#ffde77, #e6b51b); /* Safari 5.1 - 6.0 */
+}
+.left-icon-2{
+  background: -webkit-linear-gradient(#ffbb2a, #ff8a16); /* Safari 5.1 - 6.0 */
+}
+.left-icon-1{
+  background: -webkit-linear-gradient(#82cbff, #40b1fd); /* Safari 5.1 - 6.0 */
+}
+/* 免费专用色 */
+.left-icon-free{
+  background: -webkit-linear-gradient(#55d1d1, #38a5a0); /* Safari 5.1 - 6.0 */
+}
+.discharge{
+  padding: 6rpx 12rpx !important;
+  line-height: 40rpx !important;
+  background-color: #76c6ff;
+  color: #fff;
+}
+.finish{
+  color: #51ccca;
+}
+.charging{
+  color: #e3b529;
+}
+.uncharge{
+  color: #a55f25;
+}

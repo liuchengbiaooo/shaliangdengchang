@@ -1,0 +1,506 @@
+/* model */
+
+.model-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.model {
+  width: 600rpx;
+  background-color: #fff;
+}
+
+.model-text {
+  color: #888;
+  min-height: 100rpx;
+  font-size: 30rpx;
+  line-height: 1.5em;
+  padding: 24rpx 40rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.model-btns {
+  display: flex;
+  justify-content: center;
+  border-top: 1rpx solid #ddd;
+}
+
+.model-btn::after {
+  /* border: none; */
+  border-radius: 0;
+  border: none;
+}
+
+.close-btn::after {
+  border-right: 1rpx solid #ccc;
+}
+
+.model-btn {
+  flex: 1;
+  border-radius: 0;
+}
+
+page {
+  background-color: #35354a;
+  color: #fff;
+}
+
+.home {
+  overflow: hidden;
+}
+
+/* 设置点位置 */
+
+.home-swiper .wx-swiper-dots-horizontal {
+  width: 100%;
+  display: flex;
+  padding-right: 30rpx;
+  justify-content: flex-end;
+}
+
+/* 设置点样式 */
+
+.home-swiper .wx-swiper-dot {
+  display: inline-block;
+  width: 24rpx;
+  height: 5rpx;
+  border-radius: 2.5rpx;
+  background: #fff;
+}
+
+/* 当前点点的样式 */
+
+.home-swiper .wx-swiper-dot::before {
+  display: inline-block;
+  width: 24rpx;
+  height: 5rpx;
+  content: '';
+  flex-grow: 1;
+  background: #fff;
+}
+
+/* 当前点点的样式 */
+
+.home-swiper .wx-swiper-dot-active::before {
+  display: inline-block;
+  width: 24rpx;
+  height: 5rpx;
+  content: '';
+  flex-grow: 1;
+  background: #fec924;
+}
+
+.home-swiper {
+  height: 350rpx;
+}
+
+.home-swiper-img {
+  width: 100%;
+  height: 100%;
+}
+
+.home-icons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  overflow: auto;
+  border-bottom: 20rpx solid #2c2c3e;
+  position: relative;
+}
+
+/* 去除滚动条 */
+
+.home-icons::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.home-icons-cover {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 99;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.icon {
+  width: 22%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 24rpx auto;
+  font-size: 24rpx;
+}
+
+.charge-free {
+  font-size: 40rpx;
+}
+
+.home-icon-btn {
+  color: #fff;
+  font-size: 30rpx;
+  line-height: 1em;
+  text-align: center;
+}
+
+.home-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.home-icon-1 {
+  background: -webkit-linear-gradient(#ffde77, #e6b51b); /* Safari 5.1 - 6.0 *//* background: -webkit-linear-gradient(#55d1d1, #38a5a0); Safari 5.1 - 6.0 */
+}
+
+.home-icon-2 {
+  background: -webkit-linear-gradient(#82cbff, #40b1fd); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-3 {
+  background: -webkit-linear-gradient(#ffbb2a, #ff8a16); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-4 {
+  background: -webkit-linear-gradient(#ffde77, #e6b51b); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-5 {
+  background: -webkit-linear-gradient(#82cbff, #40b1fd); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-6 {
+  background: -webkit-linear-gradient(#ffbb2a, #ff8a16); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-7 {
+  background: -webkit-linear-gradient(#ffde77, #e6b51b); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-8 {
+  background: -webkit-linear-gradient(#82cbff, #40b1fd); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-9 {
+  background: -webkit-linear-gradient(#ffbb2a, #ff8a16); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-10 {
+  background: -webkit-linear-gradient(#ffde77, #e6b51b); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-11 {
+  background: -webkit-linear-gradient(#82cbff, #40b1fd); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-12 {
+  background: -webkit-linear-gradient(#ffbb2a, #ff8a16); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-13 {
+  background: -webkit-linear-gradient(#ffde77, #e6b51b); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-14 {
+  background: -webkit-linear-gradient(#82cbff, #40b1fd); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-15 {
+  background: -webkit-linear-gradient(#ffbb2a, #ff8a16); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-16 {
+  background: -webkit-linear-gradient(#ffde77, #e6b51b); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-17 {
+  background: -webkit-linear-gradient(#ffde77, #e6b51b); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-18 {
+  background: -webkit-linear-gradient(#82cbff, #40b1fd); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-19 {
+  background: -webkit-linear-gradient(#ffbb2a, #ff8a16); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-20 {
+  background: -webkit-linear-gradient(#ffde77, #e6b51b); /* Safari 5.1 - 6.0 */
+}
+
+/* 免费专用色 */
+
+.home-icon-free {
+  background: -webkit-linear-gradient(#55d1d1, #38a5a0); /* Safari 5.1 - 6.0 */
+}
+
+.home-icon-text {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  text-align: center;
+  font-size: 15rpx;
+}
+
+.hm-content {
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  padding: 30rpx 30rpx 30rpx 0;
+}
+
+.hm-ct-item {
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.hm-ct-item-img {
+  padding-right: 24rpx;
+}
+
+.hm-ct-item-canvas {
+  padding-left: 24rpx;
+}
+
+.hm-ct-img-box {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.hm-ct-img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hm-ct-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #f7ca49;
+  font-size: 36rpx;
+  flex-shrink: 0;
+}
+
+.hm-ct-energy {
+  margin: 36rpx 0;
+  height: 58rpx;
+  line-height: 58rpx;
+}
+
+.hm-ct-Award {
+  font-size: 28rpx;
+}
+
+.hm-ct-energe-count {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.hm-ct-btn {
+  background-color: #f7ca49;
+  font-size: 28rpx;
+  padding: 0 6rpx;
+}
+
+.hm-ct-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 40rpx;
+  flex-shrink: 0;
+}
+
+.hm-ct-gray {
+  color: #9e9da4;
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+
+.hm-ct-canvas {
+  width: 100%;
+  height: 0;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.canvas-cover {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+}
+
+.cover-time {
+  font-size: 70rpx;
+  font-weight: bold;
+  color: #f7ca49;
+}
+
+.cover-img {
+  width: 82rpx;
+  height: 82rpx;
+  position: absolute;
+  bottom: 12rpx;
+}
+
+.pop-up {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(212, 211, 216, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.pop-img {
+  width: 544rpx;
+  height: 604rpx;
+  margin-bottom: 90rpx;
+}
+
+.pop-imgbtn {
+  width: 260rpx;
+  height: 70rpx;
+  position: relative;
+  top: 546rpx;
+  background-color: transparent;
+}
+
+.close-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 40rpx;
+}
+
+.pic-imgbox {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  overflow: auto;
+}
+
+.pic-bg {
+  width: 730rpx;
+  height: 700rpx;
+  position: absolute;
+  bottom: 300rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99;
+}
+
+.pic-img {
+  width: 520rpx;
+  height: 100rpx;
+  position: absolute;
+  bottom: 605rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.pic-name {
+  position: absolute;
+  bottom: 716rpx;
+  display: flex;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-right: 400rpx;
+  color: #000;
+  font-weight: bold;
+  font-size: 24rpx;
+  z-index: 100;
+}
+
+.pic-sharebox{
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  bottom: 315rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 102;
+}
+
+.pic-share {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f6efe3;
+  border: none;
+  z-index: 102;
+  padding: 0;
+}
+
+.btn-pic-img {
+  width: 90rpx;
+  height: 90rpx;
+  z-index: 102;
+}
+
+.close-pic-icon {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  bottom: 160rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.pic-share::before, .pic-share::after {
+  border: none;
+  border-radius: 0;
+} 

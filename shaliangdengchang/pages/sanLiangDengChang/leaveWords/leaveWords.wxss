@@ -1,0 +1,128 @@
+page{
+  background-color: #34344a;
+  color: #fff;
+}
+.words {
+  font-size: 30rpx;
+  padding: 30rpx;
+  line-height: 60rpx;
+}
+
+.req {
+  padding-bottom: 30rpx;
+}
+
+.req_title {
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 60rpx;
+}
+
+.radio-group {
+  display: grid;
+}
+
+.textarea {
+  width: 100%;
+  height: 200rpx;
+  border-radius: 6rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  line-height: 30rpx;
+  /* box-shadow: 4rpx 4rpx 5rpx 2rpx #e0e0df; */
+  background-color: #fff;
+  color: #333;
+}
+
+.name-sex {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  grid-gap: 50rpx;
+}
+
+.radio-sex {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  grid-gap: 50rpx;
+}
+
+radio .wx-radio-input{
+    border-radius: 50%; 
+    width: 28rpx;
+    height: 28rpx;
+}
+
+.user-name {
+  width: 300rpx;
+  height: 70rpx;
+  border-radius: 6rpx;
+  /* box-shadow: 4rpx 4rpx 5rpx 2rpx #e0e0df; */
+  padding: 0 10rpx;
+  background-color: #fff;
+  color: #333;
+}
+
+.contact-input {
+  height: 70rpx;
+  border-radius: 6rpx;
+  /* box-shadow: 4rpx 4rpx 5rpx 2rpx #e0e0df; */
+  padding: 0 10rpx;
+  background-color: #fff;
+  color: #333;
+}
+
+.submit-btn {
+  width: 400rpx;
+  height: 100rpx;
+  border-radius: 50rpx;
+  background: -webkit-linear-gradient(#f3dd9d, #f7ca49); /* Safari 5.1 - 6.0 */
+  background: -o-linear-gradient(#f3dd9d, #f7ca49); /* Opera 11.1 - 12.0 */
+  background: -moz-linear-gradient(#f3dd9d, #f7ca49); /* Firefox 3.6 - 15 */
+  background: linear-gradient(#f3dd9d, #f7ca49); /* 标准的语法 */
+  color: #fff;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+button::after {
+  border: none;
+}
+.pop{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, .8);
+}
+.pop-img{
+  width: 628rpx;
+  /* height: 515rpx; */
+  height: 400rpx;
+  position: absolute;
+  /* top: 200rpx; */
+  top: 320rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.pop-text{
+  position: fixed;
+  top: 484rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 310rpx;
+  font-size: 30rpx;
+  color: #ff494b;
+  text-align: center;
+  line-height: 40rpx;
+  z-index: 999;
+}
+.pop-mini{
+  font-size: 22rpx;
+  color: #333;
+}

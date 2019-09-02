@@ -1,0 +1,115 @@
+<template name='model'>
+  <cover-view class='model-container'>
+    <cover-view class='model'>
+      <cover-view class='model-text'>
+        {{text}}
+      </cover-view>
+      <cover-view class='model-btns'>
+        <button class='model-btn close-btn' bindtap='close'>取消</button>
+        <button class='model-btn' wx:if='{{openType == "1"}}' bindgetphonenumber='getPhone' open-type='getPhoneNumber'>授权</button>
+        <button class='model-btn' wx:if='{{openType == "2"}}' open-type='share'>分享</button>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+</template>
+<template is='model' wx:if="{{showModel}}" data='{{...model}}'></template>
+
+<view class='home'>
+  <view class='home-top'>
+
+    <swiper class='home-swiper' circular autoplay indicator-dots>
+      <swiper-item>
+        <image mode='aspectFill' class='home-swiper-img' src='../../../images/1.jpg'></image>
+      </swiper-item>
+      <swiper-item>
+        <image mode='aspectFill' class='home-swiper-img' src='../../../images/2.jpg'></image>
+      </swiper-item>
+      <swiper-item>
+        <image mode='aspectFill' class='home-swiper-img' src='../../../images/3.jpg'></image>
+      </swiper-item>
+    </swiper>
+
+    <view class='home-icons'>
+      <view class='icon' wx:for='{{charge}}' wx:key='{{index}}'>
+        <button data-ChargeFee='{{item.ChargeFee}}' data-IsQuick='{{item.IsQuick}}' data-IsOpen='{{item.IsOpen}}' data-ChargeTime='{{item.ChargeTime}}' data-ChargeFee='{{item.ChargeFee}}' class='home-icon home-icon-btn home-icon-{{index+1}} home-icon-free' wx:if='{{item.ChargeFee == "0"}}'
+          catchtap='freeClickHandler'>
+          <!-- <text type='waiting'>{{item.ChargeTime}}</text>
+          <text class='home-icon-text'>分钟</text> -->
+          <text class='charge-free' type='waiting'>免</text>
+        </button>
+        <view bindtap='chargeHandler' data-ChargeFee='{{item.ChargeFee}}' data-IsOpen='{{item.IsOpen}}' data-IsQuick='{{item.IsQuick}}' data-ChargeTime='{{item.ChargeTime}}' wx:else class='home-icon home-icon-{{index + 1}}'>
+          <text type='waiting'>{{item.ChargeTime}}</text>
+          <text class='home-icon-text'>分钟 </text>
+        </view>
+        <text wx:if="{{item.ChargeFee == 0}}">
+          <text wx:if='{{item.IsOpen !== 1}}'>免费充电</text>
+        <text wx:if='{{item.IsOpen == 1}}'>免费 + 风扇</text>
+        </text>
+        <text wx:if="{{item.ChargeFee !== 0}}">
+          <text wx:if='{{item.IsOpen !== 1}}'>{{item.ChargeFee}}元</text>
+        <text wx:if='{{!item.IsQuick}}'>充电</text>
+        <text wx:if='{{item.IsQuick}}'>快充</text>
+        <text wx:if='{{item.IsOpen == 1}}'> + 风扇</text>
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <view class='home-bottom'>
+
+    <view class='hm-content'>
+      <view class='hm-ct-item hm-ct-item-img'>
+        <view class='hm-ct-img-box'>
+          <image class='hm-ct-img' src='../../../images/san3.png'></image>
+        </view>
+        <view class='hm-ct-desc'>
+          <view class='hm-ct-energy hm-ct-Award'>今日能量奖励：
+            <text class='fz18'>{{energyToday}}</text>
+          </view>
+          <view class='hm-ct-text' bindtap='showPicFun'>
+            <view style='font-weight:bold;'>{{LevelName}}</view>
+            <view class='hm-ct-gray'>会员等级</view>
+          </view>
+          <cover-view wx:if='{{showPic}}' class='pic-imgbox'>
+            <cover-image src='/images/zsbg.png' class='pic-bg'></cover-image>
+            <cover-image class='pic-img' src='{{LevelPic}}'></cover-image>
+            <cover-view class='pic-name'>{{picUserName}}:</cover-view>
+            <cover-view class='pic-sharebox'>
+              <button open-type='share' data-diploma='diploma' class='pic-share'>
+                <cover-image class='btn-pic-img' src='/images/btn_pic.jpg'></cover-image>
+              </button>
+            </cover-view>
+            <cover-image src='/images/close.png' class='close-pic-icon' bindtap='closePicFun'></cover-image>
+          </cover-view>
+        </view>
+      </view>
+
+      <view class='hm-ct-item hm-ct-item-canvas'>
+        <view class='hm-ct-canvas-box'>
+          <canvas canvas-id='energe' id='energe' class='hm-ct-canvas'>
+            <cover-view class='canvas-cover'>
+              <cover-view class='cover-text'>能量收集</cover-view>
+              <cover-view class='cover-time'>{{countDown}}</cover-view>
+              <cover-image class='cover-img' src='../../../images/dianchi.png'></cover-image>
+            </cover-view>
+          </canvas>
+        </view>
+        <view class='hm-ct-desc'>
+          <button class='hm-ct-energy hm-ct-btn' bindtap='saveEnergy'>存入能量仓</button>
+          <view class='hm-ct-text'>
+            <view class='hm-ct-energe-count'>{{energyTotal}}mg</view>
+            <view class='hm-ct-gray'>减碳贡献值</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>
+
+<cover-view class='pop-up' wx:if='{{showPop&&isPopUpFlag}}' catchtouchmove='preventMove'>
+  <cover-image bindtap='questionHandler' class='pop-img' src='/images/pop.png'></cover-image>
+  <cover-view bindtap='closeQuestion'>
+    <cover-image src='/images/close.png' class='close-icon'></cover-image>
+  </cover-view>
+</cover-view>

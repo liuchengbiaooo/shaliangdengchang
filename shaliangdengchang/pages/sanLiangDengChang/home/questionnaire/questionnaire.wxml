@@ -1,0 +1,36 @@
+<form bindsubmit="submitHandler" class='questionnaire'>
+  <view class='item' wx:for='{{list}}' wx:key='{{index}}' wx:for-index='idx'>
+    <view class='item-tit'>{{item.Title}}</view>
+    <view class='item-content'>
+      <checkbox-group name="checkbox-group_{{idx}}" wx:if="{{item.IsMultiSelect == 1}}" class="{{item.radios.length == 2 ? 'radio-group_2' : 'radio-group' }}">
+        <label class="radio" wx:for="{{item.AttributeName}}" wx:key='{{index}}'>
+          <checkbox color='#f7ca49' value="{{item}}" />{{ item }}
+          <input class='item-input' name='input_{{idx}}' wx:if='{{item == "其他（被采纳有奖励）"}}'>
+          </input>
+        </label>
+      </checkbox-group>
+      <radio-group name="radio-group_{{idx}}" wx:else class="{{item.AttributeName.length == 2 ? 'radio-group_2' : 'radio-group' }}">
+        <label class="radio" wx:for="{{item.AttributeName}}" wx:key='{{index}}'>
+          <radio color='#f7ca49' value="{{item}}" />{{item}}
+          <!-- <input class='item-input' name='input_{{idx}}' value='' wx:if='{{item.input}}'></input> -->
+        </label>
+      </radio-group>
+    </view>
+  </view>
+  <view class='btnbox'>
+    <button class='submit-btn' form-type="submit">提交</button>
+    <view form-type="reset" bindtap='formReset' class='pop' wx:if='{{showPop}}' catchtouchmove='preventMove'>
+      <!-- <image class='pop-img' src='/images/tip_quest.png' catchtap='gotoOrderFun'></image> -->
+      <image class='pop-img' src='/images/tip_img.png'></image>
+      <view class='pop-text'>
+        <view class='pop-red'>
+          <view>同学</view>
+          <view>你的作业已提交</view>
+          <view>特奖励30分钟免费充电</view>
+          <view>以资鼓励</view>
+        </view>
+        <view class='pop-mini' catchtap='gotoOrderFun'>查看“我的-我的订单”</view>
+      </view>
+    </view>
+  </view>
+</form>

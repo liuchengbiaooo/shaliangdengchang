@@ -1,0 +1,87 @@
+.guide{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.guide-swiper{
+  height: 100%;
+}
+/* 修改轮播点位置 */
+.wx-swiper-dots-horizontal{
+  position: absolute;
+  bottom: 40rpx !important;
+}
+.guide-btn-area{
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 76rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.guide-btn{
+  padding: 0;
+  width: 390rpx;
+  height: 86rpx;
+  background-color: transparent;
+}
+.guide-btn::after{
+  border: none;
+}
+.guide-protocol{
+  color: #fff;
+  font-size: 20rpx;
+  padding-top: 12rpx;
+}
+.guide-protocol:active{
+  background-color: transparent;
+}
+.guide-protocol checkbox .wx-checkbox-input {
+  width: 24rpx;
+  height: 24rpx;
+  border: none;
+  margin-bottom: 6rpx;
+}
+.guide-protocol checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #3699ff;
+  border: none;
+}
+.guide-protocol checkbox .wx-checkbox-input.wx-checkbox-input-checked::before {
+  width: 24rpx;
+  height: 24rpx;
+  line-height: 24rpx;
+  font-size: 24rpx;
+  text-align: center;
+  color: #fff;
+  background: transparent;
+}
+.user-protocol{
+  display: inline-block;
+  color: #a4cbf3;
+}
+.swiper-item{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.guide-img-box{
+  width: 100%;
+  height: 100%;
+}
+.guide-img{
+  width: 100%;
+  height: 100%;
+}
+.guide-name{
+  position: absolute;
+  z-index: 99;
+  top: 200rpx;
+  left: 100rpx;  
+  font-size: 80rpx;
+}

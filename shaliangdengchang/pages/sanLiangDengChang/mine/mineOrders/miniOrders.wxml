@@ -1,0 +1,55 @@
+<view class='orders'>
+  <view class='order' wx:for='{{orders}}' wx:key='{{index}}'>
+    <view class='order-left'>
+      <view wx:if="{{item.ChargeType != 0}}" class='left-icon left-icon-{{item.ChargeFee}}'>
+        <view class='big-font'>{{item.ChargeTime}}</view>
+        <view class='icon-mini'>分钟</view>
+      </view>
+      <view wx:if="{{item.ChargeType == 0}}" class='left-icon left-icon-free'>
+        <view class='big-font-free'>免</view>
+      </view>
+      <view class='left-desc'>
+        <view class='left-free' wx:if='{{item.ChargeType == 0}}'>
+          <text wx:if='{{item.IsOpen !== 1}}'>免费充电</text>
+          <text wx:if='{{item.IsOpen == 1}}'>免费 + 风扇</text>
+        </view>
+        <view class='left-free' wx:if='{{item.ChargeType == 1}}'>
+          <text wx:if='{{item.IsOpen !== 1}}'>{{item.ChargeFee}}元</text>
+          <text wx:if='{{item.IsQuick !== 1}}'>充电</text>
+          <text wx:if='{{item.IsQuick == 1}}'>快充</text>
+          <text wx:if='{{item.IsOpen == 1}}'> + 风扇</text>
+        </view>
+        <!-- <view class='left-time'>时长：{{item.ChargeTime}}：00</view> -->
+        <view class='left-time'>时长：{{item.ChargeTimeDuration}}</view>
+      </view>
+    </view>
+    <view class='order-right'>
+      <view class='creat'>{{item.CreateTime}}</view>
+      <view wx:if='{{item.Status == 1}}'>
+        <view class='finish' wx:if='{{item.ChargeStatus == 2}}'>充电完成</view>
+        <view class='charging' wx:if='{{item.ChargeStatus == 1}}'>正在充电</view>
+        <view class='uncharge' wx:if='{{item.ChargeStatus == 0}}'>未充电</view>
+        <!-- <button class='charging' wx:if='{{item.ChargeStatus == 1}}' size='mini'>
+          充电中
+        </button>
+        <button class='finish' wx:if='{{item.ChargeStatus == 2}}' size='mini'>
+          已完成
+        </button> -->
+      </view>
+      <view class='uncharge' wx:if='{{item.Status == 0}}'>未支付</view>
+      <view wx:if='{{item.ChargeStatus == "0"}}'>
+        <button class='discharge' wx:if='{{item.Status == "0"}}' data-ChargeFee='{{item.ChargeFee}}' data-ChargeTime='{{item.ChargeTime}}' data-OrderId='{{item.OrderId}}' size='mini' bindtap='paymentHandler'>
+          去支付</button>
+        <button class='discharge' wx:if='{{item.Status == "1"}}' data-ChargeTime='{{item.ChargeTime}}' data-OrderId='{{item.OrderId}}' size='mini' bindtap='dischargeHandler'>
+          去充电
+        </button>
+      </view>
+
+    <!-- 该部分为测试使用 -->
+    <!-- <view data-OrderId='{{item.OrderId}}' data-ChargeStatus='{{item.ChargeStatus}}' bindtap='delHandler'>删除订单</view> -->
+    <!-- 该部分为测试使用 -->
+
+    </view>
+  </view>
+  <view wx:if='{{noData}}' class='nodata'>暂无更多数据</view>
+</view>

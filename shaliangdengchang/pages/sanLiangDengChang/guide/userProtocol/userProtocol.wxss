@@ -1,0 +1,6 @@
+.text{
+  padding: 24rpx;
+}
+.item{
+  margin-bottom: 24rpx;
+}

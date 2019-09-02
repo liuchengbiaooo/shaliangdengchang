@@ -1,0 +1,58 @@
+<view class='mine'>
+  <view class='mine-top'>
+    <view class='mine-top-mark'>
+      <image class='mine-top-mark-img' src='../../../images/mineBg.png'></image>
+    </view>
+    <view class='user'>
+      <navigator url='/pages/my/user/user' class='user-info'>
+        <!-- <view class='setting'>
+          <i class="setting-icon iconfont icon-shezhi"></i>
+        </view> -->
+        <view class='user-photo'>
+          <image class='user-img' src='{{UserPicURL}}'></image>
+        </view>
+        <view class='user-name'>
+          <text>{{UserName}}</text>
+        </view>
+      </navigator>
+      <view class='wallet'>
+        <view class='wallet-packet'>
+          <image class='wallet-icon' src='../../../images/qb.png'></image>
+          <text class='mine-item-text'>个人钱包（元）</text>
+        </view>
+        <text class='wallet-money'><text class='wallet-money-mini'>￥</text>0.00</text>
+        <!-- <text class='wallet-money'>￥{{preMoney}}</text> -->
+      </view>
+    </view>
+  </view>
+
+  <view class='mine-list'>
+    <navigator url="/pages/sanLiangDengChang/mine/mineOrders/miniOrders" class='mine-item'>
+      <view>
+        <text class='iconfont icondingdan'></text>
+        <text class='mine-item-text'>我的订单</text>
+      </view>
+      <text class='iconfont .icon-iconfontjiantou2'></text>
+    </navigator>
+
+    <button open-type="contact" class='mine-item mine-item-contact'>
+      <view>
+        <text class='iconfont icon-linedesign-20'></text>
+        <text class='mine-item-text'>联系客服</text>
+      </view>
+      <text class='iconfont .icon-iconfontjiantou2'></text>
+    </button>
+    <view class='mine-item' bindtap='linkFun'>
+      <view>
+        <text class='iconfont icon-dianhua' style='font-size: 26rpx;'></text>
+        <text class='mine-item-text'>客服电话</text>
+      </view>
+      <text>400-108-1806</text>
+    </view>
+  </view>
+
+  <view class='copyright'>
+    <view class='copyright-text'>在云里@技术支持</view>
+  </view>
+
+</view>
