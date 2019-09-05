@@ -1,13 +1,13 @@
 <form bindsubmit="submitHandler">
   <view class='words'>
-    <view class='req'>
+    <!-- <view class='req'>
       <view class='req_title'>您需要什么帮助？</view>
       <radio-group name='request' class="radio-group" bindchange="radioChange">
         <label class="radio" wx:for="{{radios}}" wx:key='{{item.Id}}'>
           <radio color='#f7ca49' value="{{item.Id}}" checked="{{index == 0}}" />{{item.TypeName}}
         </label>
       </radio-group>
-    </view>
+    </view> -->
     <view class='req'>
       <view class='req_title'>具体说明：</view>
       <textarea class='textarea' name='textarea' value='{{content}}' placeholder='请输入详细反馈意见...' />
@@ -27,6 +27,10 @@
     <view class='req'>
       <view class='req_title'>联系方式*</view>
       <input name='tel' type='number' maxlength='11' value='{{tel}}' class='contact-input'></input>
+    </view>
+     <view class='req'>
+      <view class='req_title'>设备二维码*</view>
+       <input name='deviceCode' value='{{deviceCode}}' type='text' class='user-name' disabled="true" catchtap="equipmentQRcode"></input>
     </view>
     <button class='submit-btn' form-type="submit">提交</button>
   </view>

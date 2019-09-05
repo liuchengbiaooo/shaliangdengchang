@@ -10,7 +10,6 @@
   <swiper class='guide-swiper' indicator-dots indicator-active-color='#f7ca49' indicator-color='rgba(255,255, 255, 1)' bindchange='swiperChangeHandler'>
     <swiper-item class='swiper-item' wx:for='{{guideImgs}}' wx:key='{{index}}'>
       <navigator hover-class='none' class='guide-img-box'>
-         <!-- <text class='guide-name'>{{item.Name}}</text>  不要的 -->
         <image mode='aspectFill' class='guide-img' src='{{item.bannerImg}}'></image>
       </navigator>
     </swiper-item>

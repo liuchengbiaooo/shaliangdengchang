@@ -59,13 +59,14 @@ App({
     ajaxResetUrl: 'http://47.107.227.121:8088', //接口请求路径
     isLogin: 0, //是否已登录 
     IsAdmin: '', //账号是否超管 
-    wscShopId: 'c3bacfd1-ce86-4a59-ba9d-e49d53278274', // 外网  汉能伞 备用（不定） 测试shopid  帐号：13817530635  密码: zyl123654 wx34ca8b8ee9085ce2
-    // wscShopId: "efc624c8-361b-4285-b233-3337199bba92",  //内网  账号： 19999999666  密码： 123  
+    //wscShopId: 'c3bacfd1-ce86-4a59-ba9d-e49d53278274', // 外网  汉能伞 备用（不定） 测试shopid  帐号：13817530635  密码: zyl123654 wx34ca8b8ee9085ce2
+     wscShopId: "efc624c8-361b-4285-b233-3337199bba92",  //内网  账号： 19999999666  密码： 123  
     isPay: 0, //是否支付 0未支付 1已支付    
     ChargingFlag: 0, // 充电状态 0 未充电  1 在充电
     DeviceSn: "", //扫描设备后返回  "A01001101900046B"
     isPopUpFlag: true,
-    LevelName: null  //判断是否升级
+    LevelName: null,  //判断是否升级
+    userInfo: [] //上传用户信息后后台返回的用户信息集合
   },
   //ajax调用 公用函数
   ajaxResetS: function (URL, RequestType, DataObject, CallBack) {

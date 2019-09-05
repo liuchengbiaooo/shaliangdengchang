@@ -21,6 +21,7 @@ Page({
     LevelPic: '',
     showPic: false,
     picUserName: '',
+    homeImgs: [],//轮播图
     isPopUpFlag: getApp().globalData.isPopUpFlag
   },
 
@@ -169,37 +170,52 @@ Page({
       self.sanCodeHandler(e, self.freeClickHandler)
       return
     }
-    getApp().ajaxResetS('/app/login/findUserInfo', 'post', {//查询用户信息 拿手机号
-      WxCode: getApp().globalData.wxCode
-    }, function (res) {
-      if (res.data.data.phoneNumber == '') {
-        console.log("sss", res.data.data.phoneNumber);
-        self.setData({
-          showModel: true,
-          model: {
-            text: '授权手机号码',
-            openType: '1'
-          }
-        })
-      }
-    })
-    if (getApp().globalData.isHasPhone == 1) { //已授权
+    console.log("用户信息", getApp().globalData.userInfo)
+    let phoneNumber = getApp().globalData.userInfo.phoneNumber;
+    if (phoneNumber == '') { //判断是否有手机号
+      console.log("sss", res.data.data.phoneNumber);
       self.setData({
         showModel: true,
         model: {
-          text: '手机号已绑定成功,分享即可免费充电',
-          openType: '2'
-        }
-      })
-    } else { //未授权
-      self.setData({
-        showModel: true,
-        model: {
-          text: '授权手机号并分享即可免费充电',
+          text: '授权手机号码',
           openType: '1'
         }
       })
     }
+
+    // getApp().ajaxResetS('/app/login/findUserInfo', 'post', {//查询用户信息 拿手机号
+    //   WxCode: getApp().globalData.wxCode
+    // }, function (res) {
+    //   if (res.data.data.phoneNumber == '') {
+    //     console.log("sss", res.data.data.phoneNumber);
+    //     self.setData({
+    //       showModel: true,
+    //       model: {
+    //         text: '授权手机号码',
+    //         openType: '1'
+    //       }
+    //     })
+    //   }
+    // })
+
+    if (getApp().globalData.isHasPhone == 1) { //已授权
+      self.setData({
+        showModel: true,
+        model: {
+          text: '手机号已绑定成功',
+          openType: '2'
+        }
+      })
+    }
+    // else { //未授权
+    //   self.setData({
+    //     showModel: true,
+    //     model: {
+    //       text: '授权手机号并分享即可免费充电',
+    //       openType: '1'
+    //     }
+    //   })
+    // }
   },
 
   // 手机授权 
@@ -249,31 +265,32 @@ Page({
                 if (result.data.status == 1) {
                   getApp().globalData.isHasPhone = 1
                   getApp().globalData.DeviceSn = ''
+                  console.log("手机号码绑定成功！！！！")
                   // 手机号授权绑定成功
-                  self.setData({
-                    showModel: true,
-                    model: {
-                      text: '分享即可免费充电',
-                      openType: '2'
-                    }
-                  })
-
-                } else if (result.data.Code == -2) {
-                  wx.showModal({
-                    title: '温馨提示',
-                    content: '该手机号码已被使用，请使用其他号码！',
-                    showCancel: false,
-                    success: function (msg) {
-                      // if (msg.confirm) {
-                      //   wx.navigateTo({
-                      //     url: '/pages/public/CheckPhone/CheckPhone',
-                      //   })
-                      //   return;
-                      // } else if (msg.cancel) {
-                      // }
-                    }
-                  })
+                  // self.setData({
+                  //   showModel: true,
+                  //   model: {
+                  //     text: '分享即可免费充电',
+                  //     openType: '2'
+                  //   }
+                  // })
                 }
+                // } else if (result.data.Code == -2) {
+                //   wx.showModal({
+                //     title: '温馨提示',
+                //     content: '该手机号码已被使用，请使用其他号码！',
+                //     showCancel: false,
+                //     success: function (msg) {
+                //       // if (msg.confirm) {
+                //       //   wx.navigateTo({
+                //       //     url: '/pages/public/CheckPhone/CheckPhone',
+                //       //   })
+                //       //   return;
+                //       // } else if (msg.cancel) {
+                //       // }
+                //     }
+                //   })
+                // }
               })
             }
           })
@@ -500,7 +517,7 @@ Page({
             // 支付成功后2s 设备放电  并执行动画
             self.dischargeHandler(orderId, function () {
               // 设备放电获取充电剩余时间
-              self.getStatus()
+              //self.getStatus()
             }, function (res) {
               getApp().globalData.DeviceSn = ''
               wx.showModal({
@@ -603,7 +620,7 @@ Page({
       // 初始化仪表盘
       self.drawMeter()
       //调用能量接口 
-      self.getEnergyTotal()
+      //self.getEnergyTotal()
       return
     }
 
@@ -618,7 +635,7 @@ Page({
         // 初始化仪表盘
         self.drawMeter()
         //调用能量接口 
-        self.getEnergyTotal()
+        //self.getEnergyTotal()
         return
       }
 
@@ -661,12 +678,12 @@ Page({
   },
   loginSuccess() {
     if (getApp().globalData.isLogin == 1) {
-      self.getTimeInfo()
+     // self.getTimeInfo()
       // 初始化仪表盘
       self.drawMeter()
       // 剩余时间状态
-      self.getStatus()
-      self.getEnergyTotal()
+      //self.getStatus()
+     //self.getEnergyTotal()
     }
   },
   /**
@@ -708,13 +725,21 @@ Page({
       getApp().ajaxReset('/app/login/savaUserInfo', 'post', {
         userName: getApp().globalData.nowUserInfo.nickName,
         headImg: getApp().globalData.nowUserInfo.avatarUrl,
-        phoneNumber: '',
         age: 1,
         city: getApp().globalData.nowUserInfo.city,
         gender: getApp().globalData.nowUserInfo.gender,
         wxCode: getApp().globalData.wxCode
       }, function (res) {
-        console.log(res, "ok")
+        //拿到用户信息集合
+        if (res.data.status == '1') {
+          getApp().ajaxResetS('/app/login/findUserInfo', 'post', {
+            WxCode: getApp().globalData.wxCode
+          }, function (res) {
+            if (res.data.status == '1') {
+              getApp().globalData.userInfo = res.data.data
+            }
+          })
+        }
       })
     }, function () {
       console.log("登录接口调用失败")
@@ -741,6 +766,24 @@ Page({
     //     })
     //   })
     // }
+
+    //拿取顶部轮播图图片地址
+    getApp().ajaxReset('/app/login/bannerList', 'post', '', function (res) {
+      if (res.data.status == 1) {
+        let Imgs = res.data.data
+        let homeImgs = [];
+        Imgs.forEach(item => {
+          if (item.imgType == '2') {
+            homeImgs.push(item)
+          }
+        })
+        self.setData({
+          homeImgs
+        })
+      } else {
+        console.log('图片数据获取失败！！')
+      }
+    })
   },
   //var newDate = new Date('2019/1/1 00:00:00')
 
@@ -780,9 +823,9 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    self.getTimeInfo()
+    //self.getTimeInfo()
     if (getApp().globalData.isLogin == '1') {
-      self.getStatus()
+      //self.getStatus()
     }
   },
 
@@ -872,7 +915,7 @@ Page({
             // 免费下单成功后放电 - 并执行动画
             setTimeout(() => {
               self.dischargeHandler(orderId, function () {
-                self.getStatus()
+                //self.getStatus()
               }, function (res) {
                 getApp().globalData.DeviceSn = ''
                 wx.showModal({

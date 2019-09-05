@@ -7,21 +7,21 @@
       <view class='input-item'>
         <view class='item-text'>
           <view>姓</view> 名：</view>
-        <input class='input' name='name' value='{{form.Name}}'></input>
+        <input class='input' name='name' value='{{form.userName	}}'></input>
       </view>
       <view class='input-item'>
         <view class='item-text'>
           <view>手</view> 机：</view>
-        <input class='input' maxlength='11' type='number' name='tel' value='{{form.Phone}}'></input>
+        <input class='input' maxlength='11' type='number' name='tel' value='{{form.phoneNumber}}'></input>
       </view>
       <view class='input-item'>
         <view class='item-text'>
           <view>地</view> 区：</view>
-        <input class='input' name='dress' value='{{form.Area}}'></input>
+        <input class='input' name='dress' value='{{form.address}}'></input>
       </view>
       <view class='input-item'>
         <view class='item-text'>公司名称：</view>
-        <input class='input' name='company' value='{{form.CompanyName}}'></input>
+        <input class='input' name='company' value='{{form.company}}'></input>
       </view>
       <button class='item-join item-btn' form-type='submit'>立即申请加盟</button>
       <button class='item-phone item-btn' bindtap='makeCall'>

@@ -10,35 +10,44 @@ Page({
     preMoney: ''
   },
   // 拨号
-  linkFun () {
+  linkFun() {
     wx.makePhoneCall({
       phoneNumber: '400-108-1806',
     })
   },
 
-  getUserInfo () {
+  getUserInfo() {
     // 获取用户基本信息
-    getApp().ajaxResetS('/MySetting/GetUserBaseInfo', 'post', '', function (res) {
-      if (res.data.Code == 1) {
-        let datas = res.data.Data;
-        self.setData({
-          UserName: datas.UserName != '' ? datas.UserName : datas.ComName,
-          UserPicURL: getApp().globalData.imgAjaxUrl + datas.UserPicURL,
-        })
-        console.log(self.data)
-      }
-    });
+    //console.log("getApp().globalData.wxCode", getApp().globalData.userInfo)
+    let userInfo = getApp().globalData.userInfo;
+    self.setData({
+      UserName: userInfo.userName,
+      UserPicURL: userInfo.headImg,
+    })
+
+    // getApp().ajaxResetS('/app/login/findUserInfo', 'post', {
+    //   WxCode:getApp().globalData.wxCode
+    // }, function (res) {
+    //   if (res.data.status == 1) {
+    //     let datas = res.data.data;
+    //     self.setData({
+    //       UserName: datas.userName,
+    //       UserPicURL: datas.headImg,
+    //     })
+    //   }
+    // });
 
     // 账户余额信息
-    getApp().ajaxResetS('/PersonMyOrder/GetAccountList', 'post', '', function (res) {
-      if (res.data.Code == 1) {
-        let datas = res.data.Data;
-        self.setData({
-          preMoney: datas.PersonAccount.Balance
-          // compayMoney: datas.CompanyAccount.Balance
-        })
-      }
-    });
+
+    // getApp().ajaxResetS('/PersonMyOrder/GetAccountList', 'post', '', function (res) {
+    //   if (res.data.Code == 1) {
+    //     let datas = res.data.Data;
+    //     self.setData({
+    //       preMoney: datas.PersonAccount.Balance
+    //       // compayMoney: datas.CompanyAccount.Balance
+    //     })
+    //   }
+    // });
   },
 
   /**

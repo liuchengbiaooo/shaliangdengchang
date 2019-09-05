@@ -52,8 +52,8 @@ Page({
   },
 
   // 手机授权 
-  getPhone: function(e) {
-    console.log(e,"手机执行")
+  getPhone: function (e) {
+    console.log(e, "手机执行")
     // if (e.detail.errMsg == 'getPhoneNumber:fail user canceled' || e.detail.errMsg == 'getPhoneNumber:fail user deny') { //用户取消授权
     //   console.log('授权取消')
     // } else {
@@ -75,17 +75,17 @@ Page({
       header: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
-      data: {
-        ShopId: getApp().globalData.wscShopId,
-        PageIndex: 1,
-        PageSize: 1 //只获取第一页第一条
-      },
       success(res) {
         console.log(res, '引导页')
         if (res.data.status == 1) {
           //const guide = res.data.data[0].guideImgs.split('#')
-          let guideImgs = res.data.data
-          console.log(guideImgs, '引导页22')
+          let Imgs = res.data.data;
+          let guideImgs = [];
+          Imgs.forEach(item => {
+            if (item.imgType == '1') {
+              guideImgs.push(item)
+            }
+          })
           // if (!type) {
           //   for (let i = 0; i < guide.length; i++) {
           //     guideImgs.push({
@@ -103,7 +103,7 @@ Page({
           //     GuideUrl: ""
           //   })
           // }
-          
+
           wx.hideLoading()
           self.setData({
             guideImgs
@@ -144,8 +144,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-   // console.log(options, '微信扫码返回')
+  onLoad: function (options) {
+    // console.log(options, '微信扫码返回')
     self = this
     //console.log('getApp().globalData.DeviceSn', getApp().globalData.DeviceSn)
     // if (options.query.scene) {
@@ -157,22 +157,22 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function () { },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     wx.showLoading({
       title: '正在加载...',
     })
 
     wx.getStorage({
       key: 'user_key',
-      success: function(res) {
+      success: function (res) {
         self.getData(1) //获取引导页数据全部显示
       },
-      fail: function() {
+      fail: function () {
         self.getData() //获取引导页数据显示最后一张
       }
     })
@@ -181,25 +181,25 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {},
+  onHide: function () { },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {},
+  onUnload: function () { },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {},
+  onPullDownRefresh: function () { },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {},
+  onReachBottom: function () { },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {}
+  onShareAppMessage: function () { }
 })

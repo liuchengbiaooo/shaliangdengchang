@@ -6,16 +6,16 @@ Page({
    */
   data: {
     form: {
-      CompanyName: '',
-      Name: '',
-      Phone: '',
-      Area: ''
+      company: "",
+      userName: "",
+      phoneNumber: "",
+      address: ""
     }
   },
   joinFun(e) {
     const val = e.detail.value
     const arr = Object.values(val)
-    for (let i=0; i<arr.length; i++) {
+    for (let i = 0; i < arr.length; i++) {
       if (!arr[i]) {
         wx.showModal({
           title: '温馨提示',
@@ -25,7 +25,8 @@ Page({
         return
       }
     }
-    if (val.tel.length != '11') {
+    var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+    if (val.tel.length != '11' || !myreg.test(val.tel)) {
       wx.showModal({
         title: '温馨提示',
         content: '手机号输入有误',
@@ -34,22 +35,22 @@ Page({
       return
     }
     const data = {
-      ShopId: getApp().globalData.wscShopId,
-      CompanyName: val.company,
-      Name: val.name,
-      Phone: val.tel,
-      Area: val.dress
+      //ShopId: getApp().globalData.wscShopId,
+      company: val.company,
+      userName: val.name,
+      phoneNumber: val.tel,
+      address: val.dress
     }
-    getApp().ajaxResetS('/Sunshade/AddBuuinessInfo', 'post', data, (res) => {
+    getApp().ajaxResetS('/app/device/savaConsultation', 'post', data, (res) => {
       self.setData({
         form: {
-          CompanyName: '',
-          Name: '',
-          Phone: '',
-          Area: ''
+          company: "",
+          userName: "",
+          phoneNumber: "",
+          address: ""
         }
       })
-      if(res.data.Code == 1) {
+      if (res.data.status == 1) {
         wx.showModal({
           title: '温馨提示',
           content: '提交成功',
@@ -58,14 +59,14 @@ Page({
       } else {
         wx.showModal({
           title: '温馨提示',
-          content: res.data.Msg,
+          content: res.data.msg,
           showCancel: false
         })
       }
     })
   },
   // 拨号
-  makeCall () {
+  makeCall() {
     wx.makePhoneCall({
       phoneNumber: '400-108-1806',
     })
@@ -75,56 +76,56 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     self = this
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

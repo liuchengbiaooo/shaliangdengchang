@@ -65,8 +65,8 @@ page {
 .home-swiper .wx-swiper-dots-horizontal {
   width: 100%;
   display: flex;
-  padding-right: 30rpx;
-  justify-content: flex-end;
+  /* padding-right: 30rpx; */
+  justify-content: center;
 }
 
 /* 设置点样式 */
@@ -108,6 +108,7 @@ page {
 .home-swiper-img {
   width: 100%;
   height: 100%;
+  /* background-size:contain; */
 }
 
 .home-icons {

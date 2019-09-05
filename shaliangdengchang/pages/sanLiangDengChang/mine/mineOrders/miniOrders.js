@@ -172,10 +172,10 @@ Page({
   dischargeHandler(e) {
     if (getApp().globalData.DeviceSn == "") {
       self.sanCodeHandler(e, function() {
-        self.chargeFun(e)
+        //self.chargeFun(e)
       })
     } else {
-      self.chargeFun(e)
+      //self.chargeFun(e)
     }
   },
 
@@ -220,10 +220,10 @@ Page({
   paymentHandler(e) {
     if (getApp().globalData.DeviceSn == "") {
       self.sanCodeHandler(e, function() {
-        self.payFun(e)
+        //self.payFun(e)
       })
     } else {
-      self.payFun(e)
+     // self.payFun(e)
     }
   },
 
