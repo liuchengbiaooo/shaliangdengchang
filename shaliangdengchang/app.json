@@ -1,14 +1,19 @@
 {
   "pages": [
+    "pages/sanLiangDengChang/mine/mine",
+    "pages/sanLiangDengChang/mine/more/more",
     "pages/sanLiangDengChang/guide/guide",
     "pages/sanLiangDengChang/home/questionnaire/questionnaire",
     "pages/sanLiangDengChang/home/home",
     "pages/sanLiangDengChang/attractInvestment/attractInvestment",
     "pages/sanLiangDengChang/leaveWords/leaveWords",
     "pages/sanLiangDengChang/scene/scene",
-    "pages/sanLiangDengChang/mine/mine",
     "pages/sanLiangDengChang/mine/mineOrders/miniOrders",
-    "pages/sanLiangDengChang/guide/userProtocol/userProtocol"
+    "pages/sanLiangDengChang/guide/userProtocol/userProtocol",
+    "pages/sanLiangDengChang/mine/help/help",
+    "pages/sanLiangDengChang/mine/more/components/language/language",
+    "pages/sanLiangDengChang/mine/more/components/agreement/agreement",
+    "pages/sanLiangDengChang/mine/more/components/aboutUs/aboutUs"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -1,0 +1,9 @@
+  <view class='mine-list'>
+   <button open-type="contact" class='mine-item mine-item-contact'>
+      <view>
+        <text class='iconfont icon-linedesign-20'></text>
+        <text class='mine-item-text'>联系客服</text>
+      </view>
+      <text class='iconfont .icon-iconfontjiantou2'></text>
+    </button>
+  </view>

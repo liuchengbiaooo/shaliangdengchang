@@ -14,9 +14,6 @@
       </navigator>
     </swiper-item>
   </swiper>
-  <view>
-  <image src="http://sldc.oss-cn-beijing.aliyuncs.com/20190828151444.jpg/imgAll?Expires=1882336486&OSSAccessKeyId=LTAIGvoG2siVQ1ee&Signature=wLIDDMKGZ7KfmuoTdbBW%2BHGCHsI%3D"></image>
-  </view>
   <view class='guide-btn-area'>
     <button class='guide-btn' open-type="getUserInfo" bindgetuserinfo='getUserInfo' wx:if='{{isShow}}'>
       <cover-image class='guide-btn-img' src="/images/enterBtn.png" />

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {},
+  "navigationBarTitleText": "更多",
+  "enablePullDownRefresh": true,
+  "onReachBottomDistance": 50
+}

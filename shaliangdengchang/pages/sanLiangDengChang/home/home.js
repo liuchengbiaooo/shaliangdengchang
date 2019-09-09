@@ -155,7 +155,13 @@ Page({
     })
   },
 
-  // 免费充电按钮点击
+  //更新用户等级
+  userLevel(LevelName){
+    self.setData({
+      LevelName
+    })
+  },
+  // 点击充电按钮
   freeClickHandler(e) {
     console.log(e, "执行", getApp().globalData.wxCode)
     // if (getApp().globalData.ChargingFlag == 1) {
@@ -166,14 +172,10 @@ Page({
     //   })
     //   return
     // }
-    if (!getApp().globalData.DeviceSn) {
-      self.sanCodeHandler(e, self.freeClickHandler)
-      return
-    }
     console.log("用户信息", getApp().globalData.userInfo)
     let phoneNumber = getApp().globalData.userInfo.phoneNumber;
+    let LevelName = getApp().globalData.userInfo.levelName; //用户等级
     if (phoneNumber == '') { //判断是否有手机号
-      console.log("sss", res.data.data.phoneNumber);
       self.setData({
         showModel: true,
         model: {
@@ -198,15 +200,21 @@ Page({
     //   }
     // })
 
-    if (getApp().globalData.isHasPhone == 1) { //已授权
-      self.setData({
-        showModel: true,
-        model: {
-          text: '手机号已绑定成功',
-          openType: '2'
-        }
-      })
+    if (!phoneNumber == '') { //已授权
+      console.log("手机号已经绑定成功！！")
+      // self.setData({
+      //   showModel: true,
+      //   model: {
+      //     text: '手机号已绑定成功',
+      //     openType: '2'
+      //   }
+      // })
+      if (!getApp().globalData.DeviceSn) { //调取摄像头
+        self.sanCodeHandler(LevelName, self.userLevel)//更新等级
+        return
+      }
     }
+
     // else { //未授权
     //   self.setData({
     //     showModel: true,
@@ -231,12 +239,13 @@ Page({
           openType: ''
         }
       })
-
+      let LevelName = getApp().globalData.userInfo.levelName; //用户等级
       wx.login({ //获取微信code验证串
         success: function (msg) {
           getApp().ajaxReset('/app/login/wxLogin', 'post', { //获取session,必须保证与登录一致
             code: msg.code
           }, function (res) {
+            console.log("baocuo")
             if (res.data.status == '1') {
               getApp().globalData.SessionID = res.data.data.sessionKey;
               getApp().globalData.wxCode = res.data.data.openid;
@@ -266,11 +275,17 @@ Page({
                   getApp().globalData.isHasPhone = 1
                   getApp().globalData.DeviceSn = ''
                   console.log("手机号码绑定成功！！！！")
+
+
+                  if (!getApp().globalData.DeviceSn) { //调取摄像头
+                    self.sanCodeHandler(LevelName, self.userLevel)//更新等级
+                    return
+                  }
                   // 手机号授权绑定成功
                   // self.setData({
                   //   showModel: true,
                   //   model: {
-                  //     text: '分享即可免费充电',
+                  //     //text: '分享即可免费充电',
                   //     openType: '2'
                   //   }
                   // })
@@ -446,11 +461,11 @@ Page({
   },
 
   // 判断 用户是否是扫码进入 如果不是需要做扫码操作
-  sanCodeHandler(e, sucCallBack) {
+  sanCodeHandler(e, sucCallBack) { 
     // console.log("sfafgaf")
     wx.scanCode({
       success(res) {
-        //console.log(res, '扫码返回')
+        console.log(res, '扫码返回')
         const DeviceSn = res.path.split('?scene=')[1]
         getApp().globalData.DeviceSn = DeviceSn //旧 A01001101900046B
         //console.log("DeviceSn", DeviceSn)
@@ -726,6 +741,7 @@ Page({
         userName: getApp().globalData.nowUserInfo.nickName,
         headImg: getApp().globalData.nowUserInfo.avatarUrl,
         age: 1,
+        //phoneNumber: '' ,
         city: getApp().globalData.nowUserInfo.city,
         gender: getApp().globalData.nowUserInfo.gender,
         wxCode: getApp().globalData.wxCode

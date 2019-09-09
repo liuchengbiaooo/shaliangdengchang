@@ -1,0 +1,26 @@
+  <view class='mine-list'>
+    <navigator url="/pages/sanLiangDengChang/mine/more/components/language/language" class='mine-item'>
+      <view>
+        <text class='iconfont icondingdan'></text>
+        <text class='mine-item-text'>语言</text>
+      </view>
+      <view >
+        <text class='fontstyle'>中文简体</text>
+        <text class='iconfont .icon-iconfontjiantou2'></text>
+      </view>
+    </navigator>
+    <navigator url="/pages/sanLiangDengChang/mine/more/components/agreement/agreement" class='mine-item'>
+      <view>
+        <text class='iconfont icondingdan'></text>
+        <text class='mine-item-text'>用户使用协议</text>
+      </view>
+      <text class='iconfont .icon-iconfontjiantou2'></text> 
+    </navigator>
+    <navigator url="/pages/sanLiangDengChang/mine/more/components/aboutUs/aboutUs" class='mine-item'>
+      <view>
+        <text class='iconfont icondingdan'></text>
+        <text class='mine-item-text'>关于我们</text>
+      </view>
+      <text class='iconfont .icon-iconfontjiantou2'></text> 
+    </navigator>
+  </view>

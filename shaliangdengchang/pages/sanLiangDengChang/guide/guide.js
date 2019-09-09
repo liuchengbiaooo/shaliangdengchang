@@ -103,7 +103,7 @@ Page({
           //     GuideUrl: ""
           //   })
           // }
-
+          console.log("照片",guideImgs)
           wx.hideLoading()
           self.setData({
             guideImgs

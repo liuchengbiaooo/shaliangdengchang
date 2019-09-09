@@ -1,0 +1,15 @@
+<view class="language">
+    <view class="language_text">选择语言</view>
+    <view>
+        <radio-group name='language' bindchange="radioLanguage">
+            <!-- <text class="radio_text">{{item.name}}</text> -->
+            <label class="radio"  wx:for="{{language}}" wx:key='{{item.id}}' class="{{item.id == 0 ? 'radio_language radio_bor' : 'radio_language'}}">
+                <text class="radio_text">{{item.name}}</text>
+                <radio color='#3e3ebd' value="{{item.id}}"/>
+            </label>
+        </radio-group>
+    </view>
+    <button class="btn" type="primary">
+        保存
+    </button>
+</view>
