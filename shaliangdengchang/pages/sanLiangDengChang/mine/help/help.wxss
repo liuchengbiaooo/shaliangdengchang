@@ -1,1 +1,67 @@
-/* pages/sanLiangDengChang/mine/help/help.wxss */
+    page {
+        background-color: #35354a;
+        color: #999;
+    }
+    
+    .help_btn {
+        width: 380rpx;
+        height: 80rpx;
+        border: 1rpx solid rgb(43, 168, 45);
+        border-radius: 60rpx;
+        color: #4FA850;
+        text-align: center;
+        line-height: 80rpx;
+        margin: 50rpx auto;
+        font-size: 30rpx;
+    }
+    
+    .help_issue {
+        color: #999;
+        font-size: 34rpx;
+        margin: 0rpx 0rpx 10rpx 30rpx;
+    }
+    
+    .help_table {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20rpx;
+    }
+    
+    .table_left {
+        border: 1rpx solid #999;
+        width: 80rpx;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0
+    }
+    
+    .table_right {
+        border: 1rpx solid #999;
+        border-left: 0rpx;
+        flex-grow: 1;
+        box-sizing: border-box;
+    }
+    
+    .table_text {
+        display: flex;
+        justify-content: space-between;
+        padding: 0rpx 30rpx 0rpx 10rpx;
+        height: 90rpx;
+        line-height: 90rpx;
+        border-bottom: 1rpx solid #999;
+    }
+    
+    .table_text>image {
+        width: 34rpx;
+        height: 34rpx;
+        margin-top: 31rpx;
+    }
+    
+    .table_details {
+        padding: 15rpx 30rpx 15rpx 10rpx;
+        border-bottom: 1rpx solid rgb(161, 159, 159);
+        background-color: #35354a;
+        color: rgb(134, 133, 133);
+        font-size: 28rpx;
+    }

@@ -9,17 +9,15 @@ Page({
             { id: 0, name: 'English' },
             { id: 1, name: '简体中文' },
             { id: 2, name: '繁体中文' }
-        ]
+        ],
+        languageID: 0
     },
     radioLanguage(value) {
-
-        console.log("value", this.language)
-            // for (var i = 0; i < that.language.length; i++) {
-            //     console.log("value", i)
-            // }
-            // that.language.forEach(element => {
-            //     console.log("value", element)
-            // })
+        let languageID = value.detail.value
+        self.setData({
+            languageID
+        })
+        console.log("value", value)
     },
     /**
      * 生命周期函数--监听页面加载

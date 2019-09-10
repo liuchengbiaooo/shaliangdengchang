@@ -31,8 +31,15 @@
   <view class='mine-list'>
     <navigator url="/pages/sanLiangDengChang/mine/mineOrders/miniOrders" class='mine-item'>
       <view>
-        <text class='iconfont icondingdan'></text>
+        <text class='iconfont .icon-icon--copy-copy'></text>
         <text class='mine-item-text'>我的订单</text>
+      </view>
+      <text class='iconfont .icon-iconfontjiantou2'></text>
+    </navigator>
+    <navigator url="/pages/sanLiangDengChang/mine/help/help" class='mine-item mine-item-contact'>
+      <view>
+        <text class='iconfont .icon-bangzhu'></text>
+        <text class='mine-item-text'>帮助</text>
       </view>
       <text class='iconfont .icon-iconfontjiantou2'></text>
     </navigator>
@@ -50,16 +57,9 @@
       </view>
       <text>400-108-1806</text>
     </view>
-    <navigator url="/pages/sanLiangDengChang/mine/help/help" class='mine-item mine-item-contact'>
-      <view>
-        <text class='iconfont icon-linedesign-20'></text>
-        <text class='mine-item-text'>帮助</text>
-      </view>
-      <text class='iconfont .icon-iconfontjiantou2'></text>
-    </navigator>
     <navigator url="/pages/sanLiangDengChang/mine/more/more" class='mine-item'>
       <view>
-        <text class='iconfont icondingdan'></text>
+        <text class='iconfont icon-gengduo'></text>
         <text class='mine-item-text'>更多</text>
       </view>
       <text class='iconfont .icon-iconfontjiantou2'></text>

@@ -3,7 +3,7 @@
     <view>
         <radio-group name='language' bindchange="radioLanguage">
             <!-- <text class="radio_text">{{item.name}}</text> -->
-            <label class="radio"  wx:for="{{language}}" wx:key='{{item.id}}' class="{{item.id == 0 ? 'radio_language radio_bor' : 'radio_language'}}">
+            <label class="radio"  wx:for="{{language}}" wx:key='{{item.id}}' class="radio_language {{item.id == languageID ? 'radio_bor' : ''}}">
                 <text class="radio_text">{{item.name}}</text>
                 <radio color='#3e3ebd' value="{{item.id}}"/>
             </label>

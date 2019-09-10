@@ -1,9 +1,17 @@
-  <view class='mine-list'>
-   <button open-type="contact" class='mine-item mine-item-contact'>
-      <view>
-        <text class='iconfont icon-linedesign-20'></text>
-        <text class='mine-item-text'>联系客服</text>
-      </view>
-      <text class='iconfont .icon-iconfontjiantou2'></text>
-    </button>
+<view class='aboutUs'>
+  <view class="aboutUs_img">
+    <image src="../../../../../../images/aboutUs.png" />
   </view>
+  <view class="aboutUs_introduce">
+    <view>以绿色环保太阳能共享充电伞为载体的户外移动智能终端。</view>
+    <view class='aboutUs_top'>网址: https://mp.weixin.qq.com/s/xyQjysC5iSndn4X1K0xSEA</view>
+    <view>地址: 上海市松江区中创路68号13幢5层</view>
+  </view>
+  <view class='mine-item mine-item-contact' bindtap='linkFun'>
+      <view>
+        <text class='iconfont icon-dianhua' style='font-size: 26rpx;'></text>
+        <text class='mine-item-text'>招商热线</text>
+      </view>
+      <text>400-108-1806</text>
+    </view>
+</view>
